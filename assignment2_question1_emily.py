@@ -11,9 +11,9 @@ with open('cleaned_GPMDB_table.tsv', 'r') as f:
     for line in f:
         li_of_dicts.append(line.strip().split('\t'))
     mapped_list = map(list_to_dict, li_of_dicts)
-    start_date = date(2010, 0o6, 0o1)
-    end_date = date(2010, 9, 0o1)
-    filter_list = filter(lambda x: x(start_date, end_date,), mapped_list)
+    start_date = datetime(2010, 0o6, 0o1)
+    end_date = datetime(2010, 9, 0o1)
+    filter_list = filter(lambda x: start_date <= x['date'] <= end_date, mapped_list)
     print(list(filter_list))
 
 
