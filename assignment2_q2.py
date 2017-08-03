@@ -29,17 +29,34 @@ rev_item_user_dict = defaultdict(dict)          #reverse/ transform dictionary
 for k, v in user_item_rating.items():
     for nest_k, nest_v in v.items():
         rev_item_user_dict[nest_k][k] = nest_v
-        pprint.pprint(rev_item_user_dict)
+        # pprint.pprint(rev_item_user_dict)
 
-for item in combinations(rev_item_user_dict.keys(), 2):                      #using cominations to pull out user ratings for item
-    item1_dict, item2_dict = rev_item_user_dict[item[0]], rev_item_user_dict[item[1]]
-    item1_list = item1_dict.items()     #pulled out the item1 values but in dict.item type - unable to do anything
-    # item1_new = sorted(item1_list)    #tried sorted to convert dict.items to list
-    item2_list = item2_dict.items()
-    # item2_new = sorted(item2_list)
+item1_list = list( rev_item_user_dict.keys() )
+print( item1_list)
+item1_list.sort()
+for key in rev_item_user_dict:
+    print(key, rev_item_user_dict[key])
 
-    print('item 1 user ratings:', item1_list) #list of tuples? - trying to work out
-    print('item 1 user ratings:', item2_list)
+item2_list = list( rev_item_user_dict.keys() )
+print( item2_list)
+item2_list.sort()
+for key in rev_item_user_dict:
+    print(key, rev_item_user_dict[key])
+
+# keys_1 = set(item1_list.keys() )  # intersection to get common keys - not working currently need to fix code before
+# keys_2 = set(item2_list.keys() )
+# intersection = keys_1 & keys_2
+# print( intersection )
+
+# for item in combinations(rev_item_user_dict.keys(), 2):                      #using cominations to pull out user ratings for item
+#     item1_dict, item2_dict = rev_item_user_dict[item[0]], rev_item_user_dict[item[1]]
+#     item1_list = item1_dict.items()     #pulled out the item1 values but in dict.item type - unable to do anything
+#     # item1_new = sorted(item1_list)    #tried sorted to convert dict.items to list
+#     item2_list = item2_dict.items()
+#     # item2_new = sorted(item2_list)
+
+    # print('item 1 user ratings:', item1_list) #list of tuples? - trying to work out
+    # print('item 1 user ratings:', item2_list)
 
     # keys_1 = set(item1_list.keys())         #intersection to get common keys - not working because item1_list is not dictionary just dict.items
     # keys_2 = set(item2_list.keys())
