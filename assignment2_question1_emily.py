@@ -1,4 +1,3 @@
-import csv
 from datetime import datetime, date
 from functools import reduce as reduce
 
@@ -6,35 +5,35 @@ from functools import reduce as reduce
 def func_list_to_dict(list):
     return {'date': datetime.strptime( list[1], "%Y:%m:%d:%H:%M:%S" ), 'taxon': list[22]}
 
+# def reduce_counts(dict_of_counts, filter_dict):
+#     dict_of_counts = {}
+#     for x in filter_dict:
+#         dict_of_counts[x] = dict_of_counts.get(x, 0) + 1
+#         return dict_of_counts
 
-def countfn(dict, item):
+def x(a, b):
     counts = {}
-    for tax in dict:
-        for item in tax.values():
-            item = item.split(',')
-            counts[item] = counts.get(item, 0) + 1
-        return counts
+    for x in a:
+        if x in b:
+            x[counts] = sum(1 for x in a if x == b)
+            return counts
+
+# sum( 1 for d in my_list if d.get( 'id' ) == 1 )
 
 
-# def find_the_key(dictionary, filter_keys):
-#     for items in dictionary:
-#         return dict(filter(lambda i: i[0] in filter_keys, dictionary.items()))
-
-
-reduced_dict = {}
+dict_of_counts = {}
 li_of_dicts = []
 with open( 'cleaned_GPMDB_table.tsv', 'r' ) as f:
     header = f.readline()
     for line in f:
         li_of_dicts.append( line.strip().split( '\t' ) )
-    mapped_list = map( func_list_to_dict, li_of_dicts )
-    start_date = datetime( 2010, 0o6, 0o1 )
-    end_date = datetime( 2010, 9, 0o1 )
-    filter_list = filter(lambda x: start_date <= x['date'] <= end_date, mapped_list)
-    r = countfn((filter_list), 'taxon')
-    print(r)
-    # e = list(filter_list)
-    # result = reduce(countfn(e,['taxon']), e, dict())
+    mapped_dicts = map( func_list_to_dict, li_of_dicts )
+    start_date = datetime( 2010, 6, 1 )
+    end_date = datetime( 2010, 9, 30 )
+    filter_dicts = filter(lambda x: start_date <= x['date'] <= end_date, mapped_dicts)
+    reduce_dict = reduce(x(next(filter_dicts), dict_of_counts['taxon']),filter_dicts,{})
+
+
 
 
 
