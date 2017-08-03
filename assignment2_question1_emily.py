@@ -32,5 +32,5 @@ with open( 'cleaned_GPMDB_table.tsv', 'r' ) as f:
     end_date = datetime( 2010, 9, 30 )
     filter_dicts = filter(lambda x: start_date <= x['date'] <= end_date, mapped_dicts) #filtering so only date/ taxons are for stated dates are aggregated
     print(list(filter_dicts)) #print to show I got up to here
-    # reduce_dict = reduce(x(next(filter_dicts), dict_of_counts['taxon']),filter_dicts,{}) #STEP 4 attempt
+    # reduce_dict = reduce(x(next(filter_dicts['taxon']), dict_of_counts),filter_dicts,{}) #STEP 4 attempt put next because filter wasnt working
 
