@@ -38,10 +38,13 @@ for item in combinations(rev_item_user_dict.keys(), 2):                      #us
     item2_list = item2_dict.items()
     # item2_new = sorted(item2_list)
 
-    keys_1 = set(item1_list.keys())         #intersection to get common keys - not working because item1_list is not dictionary just dict.items
-    keys_2 = set(item2_list.keys())
-    intersection = keys_1 & keys_2
-    print(intersection)
+    print('item 1 user ratings:'item1_list) #list of tuples - trying to work out
+    print('item 1 user ratings:'item2_list)
+
+    # keys_1 = set(item1_list.keys())         #intersection to get common keys - not working because item1_list is not dictionary just dict.items
+    # keys_2 = set(item2_list.keys())
+    # intersection = keys_1 & keys_2
+    # print(intersection)
 
 
 
