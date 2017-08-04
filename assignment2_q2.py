@@ -2,12 +2,11 @@ from collections import defaultdict
 from itertools import combinations
 import pprint
 import math
-
-# def user_item_compare(user_key, dict):                #TRIED MAKING A FUNCTION HERE
-#     for user_key in combinations(dict.keys(), 1):
-#         user_dict = dict[user_key[0]]
-#         list_user_items = [user_dict.items()]
-#         return print(list_user_items)
+#
+# def user_item_compare(dict_1, dict_2):                #TRIED MAKING A FUNCTION HERE instead on printing each dictionary
+#     common_keys = [k for v[k] in dict_1 if dict_1[k] == dict_2[k]]
+#     for k in diffkeys:
+#         return print(k, ':', dict_1[k], '->', dict_2[k])
 
 
 user_item_rating = {
@@ -25,23 +24,46 @@ user_item_rating = {
               'item5': 3.5, 'item6': 3.0},
     'user7': {'item2': 4.5, 'item4': 4.0, 'item5': 1.0}
 }
-rev_item_user_dict = defaultdict(dict)          #reverse/ transform dictionary
+
+item_user_dict = defaultdict(dict)          #reverse/ transform dictionary
 for k, v in user_item_rating.items():
     for nest_k, nest_v in v.items():
-        rev_item_user_dict[nest_k][k] = nest_v
-        # pprint.pprint(rev_item_user_dict)
+        item_user_dict[nest_k][k] = nest_v
+        pprint.pprint(item_user_dict)
 
-item1_list = list( rev_item_user_dict.keys() )
-print( item1_list)
-item1_list.sort()
-for key in rev_item_user_dict:
-    print(key, rev_item_user_dict[key])
 
-item2_list = list( rev_item_user_dict.keys() )
-print( item2_list)
-item2_list.sort()
-for key in rev_item_user_dict:
-    print(key, rev_item_user_dict[key])
+dict_item1 = item_user_dict.get('item1')
+print('item 1 user ratings', dict_item1)
+
+dict_item2 = item_user_dict.get('item2')
+print('item 2 user ratings', dict_item2)
+
+dict_item3 = item_user_dict.get('item3')
+print('item 3 user ratings', dict_item3)
+
+dict_item4 = item_user_dict.get('item4')
+print('item 4 user ratings', dict_item4)
+
+dict_item5 = item_user_dict.get('item5')
+print('item 2 user ratings', dict_item5)
+
+dict_item6 = item_user_dict.get('item6')
+print('item 2 user ratings', dict_item5)
+
+
+
+values_1 = set(dict_item1.values())     #common values
+values_2 = set(dict_item2.values())
+intersection = (values_1 & values_2)
+print(intersection)             #only gives the common value of (3.0) I need the key that corresponds to that value
+
+
+
+# def compare_dict(dict1, dict2):
+# diffkeys = [k for k in dict1 if dict1[k] != dict2[k]]
+# for k in diffkeys:
+#   print (k, ':', dict1[k], '->', dict2[k])
+
 
 # keys_1 = set(item1_list.keys() )  # intersection to get common keys - not working currently need to fix code before
 # keys_2 = set(item2_list.keys() )
@@ -54,15 +76,6 @@ for key in rev_item_user_dict:
 #     # item1_new = sorted(item1_list)    #tried sorted to convert dict.items to list
 #     item2_list = item2_dict.items()
 #     # item2_new = sorted(item2_list)
-
-    # print('item 1 user ratings:', item1_list) #list of tuples? - trying to work out
-    # print('item 1 user ratings:', item2_list)
-
-    # keys_1 = set(item1_list.keys())         #intersection to get common keys - not working because item1_list is not dictionary just dict.items
-    # keys_2 = set(item2_list.keys())
-    # intersection = keys_1 & keys_2
-    # print(intersection)
-
 
 
 # item1_list = []                               #Step 2 attempts TRIED THIS TO NOT GET DICT.ITEMS
